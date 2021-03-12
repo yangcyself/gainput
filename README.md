@@ -110,3 +110,7 @@ Alternatives
 - [OIS](https://github.com/wgois/Object-oriented-Input-System--OIS-)
 - [SDL](http://www.libsdl.org/)
 
+
+To add more joystick support
+-----------
+go to the file `GainputInputDevicePadLinux.h`
