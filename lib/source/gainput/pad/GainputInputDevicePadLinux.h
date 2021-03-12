@@ -193,7 +193,7 @@ private:
 		}
 
 		deviceState_ = InputDevice::DS_UNAVAILABLE;
-
+		printf("openfd %s", PadDeviceIds[index_]);
 		fd_ = open(PadDeviceIds[index_], O_RDONLY | O_NONBLOCK);
 		if (fd_ < 0)
 		{
