@@ -7,9 +7,11 @@
 #include <linux/joystick.h>
 #include <errno.h>
 
+#include <stdio.h>
+
 // Cf. http://www.kernel.org/doc/Documentation/input/joystick-api.txt
 // Cf. http://ps3.jim.sh/sixaxis/usb/
-
+#define GAINPUT_DEBUG
 
 namespace gainput
 {
@@ -216,11 +218,32 @@ private:
 		}
 #ifdef GAINPUT_DEBUG
 		GAINPUT_LOG("Name: %s\n", name);
+		printf("Name: %s\n", name);
 #endif
 
 		for (unsigned i = PadButtonLeftStickX; i < PadButtonAxisCount_; ++i)
 		{
 			axisDialect_[i] = i;
+		}
+		// 
+		if (strcmp(name, "Logitech Logitech Dual Action") == 0)
+		{
+			printf("connected to: %s\n", name);
+#ifdef GAINPUT_DEBUG
+			GAINPUT_LOG("  --> known controller\n");
+#endif
+			buttonDialect_[0] = PadButtonX;
+			buttonDialect_[1] = PadButtonA;
+			buttonDialect_[2] = PadButtonB;
+			buttonDialect_[3] = PadButtonY;
+			buttonDialect_[4] = PadButtonL1;
+			buttonDialect_[5] = PadButtonR1;
+			buttonDialect_[6] = PadButtonL2;
+			buttonDialect_[7] = PadButtonR2;
+			buttonDialect_[8] = PadButtonHome;
+			buttonDialect_[9] = PadButtonStart;
+			buttonDialect_[10] = PadButtonLeft;
+			buttonDialect_[11] = PadButtonRight;
 		}
 
 		if (strcmp(name, "Sony PLAYSTATION(R)3 Controller") == 0)
